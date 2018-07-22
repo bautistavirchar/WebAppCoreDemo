@@ -8,20 +8,21 @@ use DbDemo
 
 CREATE TABLE [dbo].[Status]
 (
- [Id]   INT NOT NULL ,
+ [Id]   INT IDENTITY(1,1) NOT NULL ,
  [Name] NVARCHAR(50) NOT NULL ,
 
  CONSTRAINT [PK_Status] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
 
-
+INSERT INTO dbo.Status([Name])
+VALUES('Available'),('Out-of-stocked')
 
 --************************************** [dbo].[Customers]
 
 CREATE TABLE [dbo].[Customers]
 (
- [Id]   INT NOT NULL ,
+ [Id]   INT IDENTITY(1,1) NOT NULL ,
  [Name] NVARCHAR(255) NOT NULL ,
 
  CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([Id] ASC)
@@ -29,25 +30,27 @@ CREATE TABLE [dbo].[Customers]
 GO
 
 
-
 --************************************** [dbo].[OrderedStatus]
 
 CREATE TABLE [dbo].[OrderedStatus]
 (
- [Id]   INT NOT NULL ,
+ [Id]   INT IDENTITY(1,1) NOT NULL ,
  [Name] NVARCHAR(50) NOT NULL ,
 
  CONSTRAINT [PK_OrderedStatus] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
 
-
+INSERT INTO dbo.OrderedStatus([Name])
+VALUES  ('Cancelled'),
+        ('Delivered'),
+        ('Reserved')
 
 --************************************** [dbo].[Products]
 
 CREATE TABLE [dbo].[Products]
 (
- [Id]     INT NOT NULL ,
+ [Id]     INT IDENTITY(1,1) NOT NULL ,
  [Name]   NVARCHAR(255) NOT NULL ,
  [Status] INT NOT NULL ,
 
@@ -65,7 +68,7 @@ GO
 
 CREATE TABLE [dbo].[OrderedItems]
 (
- [Id]        INT NOT NULL ,
+ [Id]        INT IDENTITY(1,1) NOT NULL ,
  [Customer]  INT NOT NULL ,
  [Product]   INT NOT NULL ,
  [Status]    INT NOT NULL ,
