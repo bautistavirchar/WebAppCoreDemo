@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAppCoreDemo.Models.ProductModels
+namespace WebAppCoreDemo.Models.ProductModel
 {
     public class ProductModels
     {
         public int Id { get; set; }
-        public string Key { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
         public string Name { get; set; }

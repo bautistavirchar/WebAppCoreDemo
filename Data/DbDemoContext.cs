@@ -24,8 +24,6 @@ namespace WebAppCoreDemo.Data
 
             modelBuilder.Entity<Customers>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -33,8 +31,6 @@ namespace WebAppCoreDemo.Data
 
             modelBuilder.Entity<OrderedItems>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.TimeStamp).HasColumnType("datetime");
 
                 entity.HasOne(d => d.CustomerNavigation)
@@ -58,8 +54,6 @@ namespace WebAppCoreDemo.Data
 
             modelBuilder.Entity<OrderedStatus>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);
@@ -67,8 +61,6 @@ namespace WebAppCoreDemo.Data
 
             modelBuilder.Entity<Products>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(255);
@@ -82,8 +74,6 @@ namespace WebAppCoreDemo.Data
 
             modelBuilder.Entity<Status>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(50);

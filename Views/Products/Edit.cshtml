@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Products.cshtml";
     var options = new OptionalValues();
-    var option_Status = new SelectList(options.GetProductStatuses, "Value", "Text");
+    var option_Status = new SelectList(options.GetProductStatuses, "Value", "Text", Model.Status);
 }
 <div class="form-group">
     <div class="row">
@@ -12,7 +12,8 @@
         </div>
     </div>
 </div>
-<form asp-action="Save" asp-controller="Products" method="POST">
+<form asp-action="Update" asp-controller="Products" method="POST">
+    <input asp-for="Id" type="hidden"/>
     @if(TempData["Result"] != null){
         <div class="alert alert-success alert-dismissible" role="alert">
             <span>@TempData["Result"]</span>

@@ -8,12 +8,10 @@ use DbDemo
 
 CREATE TABLE [dbo].[Status]
 (
- [Id]   INT IDENTITY(1,1) NOT NULL ,
- [Name] NVARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_Status] PRIMARY KEY CLUSTERED ([Id] ASC)
+ [Id]   INT IDENTITY(1,1) PRIMARY KEY,
+ [Name] NVARCHAR(50) NOT NULL
 );
-GO
+
 
 INSERT INTO dbo.Status([Name])
 VALUES('Available'),('Out-of-stocked')
@@ -22,10 +20,8 @@ VALUES('Available'),('Out-of-stocked')
 
 CREATE TABLE [dbo].[Customers]
 (
- [Id]   INT IDENTITY(1,1) NOT NULL ,
+ [Id]   INT IDENTITY(1,1) PRIMARY KEY ,
  [Name] NVARCHAR(255) NOT NULL ,
-
- CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
 
@@ -34,10 +30,8 @@ GO
 
 CREATE TABLE [dbo].[OrderedStatus]
 (
- [Id]   INT IDENTITY(1,1) NOT NULL ,
+ [Id]   INT IDENTITY(1,1) PRIMARY KEY ,
  [Name] NVARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_OrderedStatus] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 GO
 
@@ -50,11 +44,10 @@ VALUES  ('Cancelled'),
 
 CREATE TABLE [dbo].[Products]
 (
- [Id]     INT IDENTITY(1,1) NOT NULL ,
+ [Id]     INT IDENTITY(1,1) PRIMARY KEY,
  [Name]   NVARCHAR(255) NOT NULL ,
  [Status] INT NOT NULL ,
-
- CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED ([Id] ASC),
+ 
  CONSTRAINT [FK_ProductStatus] FOREIGN KEY ([Status])
   REFERENCES [dbo].[Status]([Id])
 );
@@ -68,13 +61,12 @@ GO
 
 CREATE TABLE [dbo].[OrderedItems]
 (
- [Id]        INT IDENTITY(1,1) NOT NULL ,
+ [Id]        INT IDENTITY(1,1) PRIMARY KEY,
  [Customer]  INT NOT NULL ,
  [Product]   INT NOT NULL ,
  [Status]    INT NOT NULL ,
  [TimeStamp] DATETIME NOT NULL ,
-
- CONSTRAINT [PK_OrderedItems] PRIMARY KEY CLUSTERED ([Id] ASC),
+ 
  CONSTRAINT [FK_Customer] FOREIGN KEY ([Customer])
   REFERENCES [dbo].[Customers]([Id]),
  CONSTRAINT [FK_Product] FOREIGN KEY ([Product])

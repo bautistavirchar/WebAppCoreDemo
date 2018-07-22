@@ -1,0 +1,37 @@
+@model IEnumerable<WebAppCoreDemo.Models.ProductModel.ProductViewModels>
+@{
+    Layout = "~/Views/Shared/_Products.cshtml";
+}
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Products List</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered">
+                <tr>
+                    <thead>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Status</td>
+                        <td>Actions</td>
+                    </thead>
+                </tr>
+            @foreach(var prod in Model){
+                <tr>
+                    <td>@prod.Key</td>
+                    <td>@prod.Name</td>
+                    <td>@prod.Status</td>
+                    <td style="width: 15%">
+                        <a asp-action="Edit" asp-route-key="@prod.Key" asp-controller="Products" class="btn btn-default">Edit</a> |
+                        <a onclick="if(!confirm('Are you sure?')){ return false}" id="btnDelete" asp-action="Delete" asp-route-key="@prod.Key" asp-controller="Products" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+            </table>
+        </div>
+    </div>
+</div>
