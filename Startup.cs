@@ -30,26 +30,27 @@ namespace WebAppCoreDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            WebAppCoreDemo.Data.DbDemoContext.GetConnectionString = GetConnectionString;
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(GetConnectionString));
 
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            // services.AddIdentity<ApplicationUser, ApplicationRole>()
+            //     .AddEntityFrameworkStores<ApplicationDbContext>()
+            //     .AddDefaultTokenProviders();
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequiredUniqueChars = 0;
+            // services.Configure<IdentityOptions>(options =>
+            // {
+            //     // Password settings
+            //     options.Password.RequireDigit = true;
+            //     options.Password.RequiredLength = 6;
+            //     options.Password.RequireNonAlphanumeric = false;
+            //     options.Password.RequireUppercase = false;
+            //     options.Password.RequireLowercase = false;
+            //     options.Password.RequiredUniqueChars = 0;
 
-                // User settings
-                options.User.RequireUniqueEmail = true;
-            });
+            //     // User settings
+            //     options.User.RequireUniqueEmail = true;
+            // });
 
             // services.ConfigureApplicationCookie(options =>
             // {
