@@ -1,1 +1,27 @@
-<h3>Hello Opaw</h3>
+@using WebAppCoreDemo.Models.Repositories
+@model WebAppCoreDemo.Models.ProductModels.ProductModels
+@{
+    Layout = "~/Views/Shared/_Products.cshtml";
+    var options = new OptionalValues();
+    var option_Status = new SelectList(options.GetProductStatuses, "Value", "Text");
+}
+<form asp-action="Save" asp-controller="Products" method="POST">
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <label class="control-label">Name:</label>
+            <input asp-for="Name" class="form-control" placeholder="Product name..."/>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <label class="control-label">Status:</label>
+            <select asp-for="Status" asp-items="@option_Status" class="form-control"></select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </div>
+</form>
